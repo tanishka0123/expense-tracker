@@ -1,58 +1,83 @@
 @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
 
 :root {
-  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --primary-bg-color: #2f2f2f;
+  --secondary-bg-color: #333;
+  --text-color-light: #f7f7f7;
+  --text-color-dark: #ccc;
+  --accent-color: #9c88ff;
+  --shadow-light: rgba(0, 0, 0, 0.12);
+  --shadow-dark: rgba(0, 0, 0, 0.24);
 }
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  background-color: #f7f7f7;
+  background-color: var(--primary-bg-color);
+  color: var(--text-color-light);
+  font-family: "Lato", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  margin: 0;
-  font-family: "Lato", sans-serif;
+  transition: background-color 0.3s ease-in-out;
 }
 
-.header{
-  font-size: 30px;
-  font-weight:900;
-  font-family: Geneva, Verdana, sans-serif;
-}
-
-.pad{
-  padding: 12px;
+.pad {
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
 }
 
 .container {
   margin: 30px auto;
-  width: 350px;
+  width: 100%;
+  background: var(--secondary-bg-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--shadow-dark);
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.header {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: Geneva, Verdana, sans-serif;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--accent-color);
+  text-transform: uppercase;
 }
 
 h1 {
-  letter-spacing: 1px;
-  margin: 0;
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 20px 0;
+  color: var(--text-color-light);
 }
 
 h3 {
-  border-bottom: 1px solid #bbb;
+  border-bottom: 2px solid var(--accent-color);
   padding-bottom: 10px;
-  margin: 40px 0 10px;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
 }
 
 h4 {
   margin: 0;
   text-transform: uppercase;
+  color: var(--text-color-dark);
 }
 
 .inc-exp-container {
-  background-color: #fff;
-  box-shadow: var(--box-shadow);
+  background-color: #444;
+  border-radius: 8px;
+  box-shadow: var(--shadow-light);
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -65,13 +90,14 @@ h4 {
 }
 
 .inc-exp-container > div:first-of-type {
-  border-right: 1px solid #dedede;
+  border-right: 1px solid #666;
 }
 
 .money {
   font-size: 20px;
   letter-spacing: 1px;
   margin: 5px 0;
+  font-weight: bold;
 }
 
 .money.plus {
@@ -79,65 +105,52 @@ h4 {
 }
 
 .money.minus {
-  color: #c0392b;
+  color: #e74c3c;
 }
 
 label {
   display: inline-block;
-  margin: 10px 0;
+  margin: 12px 0;
+  color: var(--text-color-light);
 }
 
 input[type="text"],
 input[type="number"] {
-  border: 1px solid #dedede;
-  border-radius: 2px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background: #333;
+  color: var(--text-color-light);
   display: block;
   font-size: 16px;
-  padding: 10px;
+  padding: 12px;
   width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  background-color: #555;
+  outline: none;
 }
 
 .btn {
   cursor: pointer;
-  background-color: #9c88ff;
-  box-shadow: var(--box-shadow);
+  background-color: var(--accent-color);
+  box-shadow: var(--shadow-light);
   color: #fff;
   border: 0;
   display: block;
   font-size: 16px;
-  margin: 10px 0 30px;
-  padding: 10px;
+  margin: 15px 0;
+  padding: 12px;
   width: 100%;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.btn:focus,
-.delete-btn:focus {
-  outline: 0;
-}
-
-.list {
-  list-style-type: none;
-  padding: 0;
-  margin-bottom: 40px;
-}
-
-.list li {
-  background-color: #fff;
-  box-shadow: var(--box-shadow);
-  color: #333;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  padding: 10px;
-  margin: 10px 0;
-}
-
-.list li.plus {
-  border-right: 5px solid #2ecc71;
-}
-
-.list li.minus {
-  border-right: 5px solid #c0392b;
+.btn:hover {
+  background-color: #7e62e0;
+  transform: scale(1.05);
 }
 
 .delete-btn {
@@ -145,9 +158,9 @@ input[type="number"] {
   background-color: #e74c3c;
   border: 0;
   color: #fff;
-  font-size: 20px;
-  line-height: 20px;
-  padding: 2px 5px;
+  font-size: 18px;
+  line-height: 18px;
+  padding: 4px 8px;
   position: absolute;
   top: 50%;
   left: 0;
@@ -156,12 +169,49 @@ input[type="number"] {
   transition: opacity 0.3s ease;
 }
 
+.list li {
+  background-color: #555;
+  box-shadow: var(--shadow-light);
+  color: var(--text-color-light);
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 15px;
+  margin: 12px 0;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.list li:hover {
+  transform: scale(1.02);
+}
+
+.list li.plus {
+  border-left: 5px solid #2ecc71;
+}
+
+.list li.minus {
+  border-left: 5px solid #e74c3c;
+}
+
 .list li:hover .delete-btn {
   opacity: 1;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 768px) {
   .container {
-    width: 300px;
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    font-size: 28px;
+  }
+  .container {
+    padding: 15px;
+  }
+  .btn {
+    padding: 10px;
   }
 }
